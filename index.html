@@ -180,21 +180,23 @@
     </footer>
 
     
-  <audio id="bgMusic" loop>
+  <audio id="bgMusic" autoplay loop>
   <source src="audio/den-pobedy.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
 <script>
-  window.addEventListener("load", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const audio = document.getElementById("bgMusic");
-    // Try to play on page load (will fail silently if browser blocks it)
-    audio.play().catch((err) => {
-      console.log("Autoplay was blocked. Waiting for user interaction.");
-      // Wait for first user click, then play
-      document.addEventListener("click", () => {
+
+    // Try to autoplay
+    audio.play().catch(() => {
+      // If autoplay is blocked, wait for user interaction
+      const enableAudio = () => {
         audio.play();
-      }, { once: true });
+        document.removeEventListener("click", enableAudio);
+      };
+      document.addEventListener("click", enableAudio);
     });
   });
 </script>
