@@ -179,23 +179,26 @@
       <p class="text-light text-center">&copy; 2025 Բյուրեղավանի հիմնական դպրոց</p>
     </footer>
 
-    <audio id="bgMusic" loop>
-      <source src="audio/den-pobedy.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </section>
-</div>
+    
+  <audio id="bgMusic" loop>
+  <source src="audio/den-pobedy.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
 <script>
   window.addEventListener("load", () => {
     const audio = document.getElementById("bgMusic");
-    audio.play().catch(() => {
+    // Try to play on page load (will fail silently if browser blocks it)
+    audio.play().catch((err) => {
+      console.log("Autoplay was blocked. Waiting for user interaction.");
+      // Wait for first user click, then play
       document.addEventListener("click", () => {
         audio.play();
       }, { once: true });
     });
   });
 </script>
+</section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
