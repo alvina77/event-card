@@ -185,11 +185,14 @@
   Your browser does not support the audio element.
 </audio>
 
-<script>
+
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
   document.addEventListener("DOMContentLoaded", () => {
     const audio = document.getElementById("bgMusic");
 
-    // Try to autoplay
+    // Attempt to play the audio
     audio.play().catch(() => {
       // If autoplay is blocked, wait for user interaction
       const enableAudio = () => {
@@ -200,7 +203,5 @@
     });
   });
 </script>
-</section>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
